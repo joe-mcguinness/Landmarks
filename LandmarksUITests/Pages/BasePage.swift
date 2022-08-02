@@ -10,9 +10,4 @@ import XCTest
 
 class BasePage: XCTest {
 
-var app: XCUIApplication
-    
-    init(xcuiApplication: XCUIApplication) {
-        app = xcuiApplication
-    }
 }
