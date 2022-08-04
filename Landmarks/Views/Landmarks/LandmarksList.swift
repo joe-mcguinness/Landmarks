@@ -25,16 +25,17 @@ struct LandmarksList: View {
                 Toggle(isOn: $showFavoritesOnly) {
                     Text("Favourites only")
                 }
-                .accessibilityLabel("favouritesToggle")
+                .accessibilityIdentifier("favouritesToggle")
+                
                 ForEach(filteredLandmarks) { landmark in
                     NavigationLink {
                         LandmarkDetail(landmark: landmark)
                     } label:{
-                        LandmarkRow(landmark: landmark)
+                        LandmarkRow(landmark: landmark).accessibilityIdentifier(landmark.name)
                     }
                 }
             }
-            .navigationTitle("ustwo studios")
+            .navigationTitle("ustwo studios").accessibilityIdentifier("listTitle")
         }
     }
 }

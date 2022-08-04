@@ -8,22 +8,32 @@
 import XCTest
 
 class LandmarksUITests: BaseTestClass {
+    
+    var landmarksListPage: LandmarksListPage!
+    var landmarkDetailsPage: LandmarkDetailsPage!
+    
+    
+    override func setUp() {
+           super.setUp()
+           landmarksListPage = LandmarksListPage(xcuiApplication: app)
+       }
 
-    func testToggleFavourites() {
-        let app = XCUIApplication()
-        let toggleFavoriteButton = app.scrollViews.otherElements.buttons["Toggle Favorite"]
-        toggleFavoriteButton.tap()
-        app.navigationBars["New York"].buttons["ustwo studios"].tap()
-        app.tables/*@START_MENU_TOKEN@*/.buttons["Malmö"]/*[[".cells[\"Malmö\"].buttons[\"Malmö\"]",".buttons[\"Malmö\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
-        toggleFavoriteButton.tap()
-        app.navigationBars["Malmö"].buttons["ustwo studios"].tap()
+    func testTogglingFavoritesChangesStudioCount() {
+        let studioCount = landmarksListPage.countOfAllStudios()
+        landmarkDetailsPage = landmarksListPage.tapLondonStudioCell()
+        landmarksListPage = landmarkDetailsPage.toggleFavoriteButton()
+                           .tapBackButton()
+        landmarkDetailsPage.toggleFavoriteButton()
+        XCTAssertLessThan(landmarksListPage.countOfAllStudios(), studioCount)
     }
-
-    func testFavourite() {
-        let app = XCUIApplication()
-        app.tables/*@START_MENU_TOKEN@*/.buttons["London"]/*[[".cells[\"London\"].buttons[\"London\"]",".buttons[\"London\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
-        app.scrollViews.otherElements.buttons["Toggle Favorite"].tap()
-        app.navigationBars["London"].buttons["ustwo studios"].tap()
+    
+    func testMalmoDetailsPage() {
+        landmarkDetailsPage = landmarksListPage.tapMalmoStudioCell()
+        XCTAssert(landmarkDetailsPage.heroImageIsDisplayed())
+        XCTAssert(landmarkDetailsPage.bodyTextIsDisplayed())
+        XCTAssert(landmarkDetailsPage.headerTextIsDisplayed())
+        XCTAssert(landmarkDetailsPage.titleIsDisplayedCorrectly(title: "Malmö"))
+        XCTAssert(landmarkDetailsPage.addressIsDisplayedCorrectly())        
+        landmarkDetailsPage.tapBackButton()
     }
-
 }

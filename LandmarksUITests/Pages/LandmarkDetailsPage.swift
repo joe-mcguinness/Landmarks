@@ -18,32 +18,40 @@ class LandmarkDetailsPage: BasePage {
        app = xcuiApplication
     }
     
-    func toggleFavoriteButton() {
+    @discardableResult
+    func toggleFavoriteButton() -> LandmarkDetailsPage {
         app.scrollViews.otherElements.buttons["Toggle Favorite"].tap()
+        return self
     }
     
-    func tapBackButton() {
-        
+    @discardableResult
+    func tapBackButton()  -> LandmarksListPage {
+        app.buttons["ustwo studios"].tap()
+        return LandmarksListPage(xcuiApplication: app)
     }
     
     func titleIsDisplayedCorrectly(title: String) -> Bool {
-        return false
+        return app.scrollViews.otherElements.staticTexts["Malmö"].isHittable
     }
     
-    func addressIsDisplayedCorrectly(address: String) -> Bool {
-        return false
+    func addressIsDisplayedCorrectly() -> Bool {
+        return app.scrollViews.otherElements.staticTexts["address text"].isHittable        
+    }
+    
+    func headerTextIsDisplayed() -> Bool {
+        return app.staticTexts["header text"].isHittable
     }
     
     func bodyTextIsDisplayed() -> Bool {
-        return false
+        return app.staticTexts["body text"].isHittable
     }
     
     func mapViewIsDisplayed() -> Bool {
-        return false
+        return app.scrollViews.otherElements.staticTexts["Kärleksgatan 2, 211 45 Malmö, Sweden"].isHittable
     }
     
     func heroImageIsDisplayed() -> Bool {
-        return false
+        return app.images["hero image"].isHittable
     }
     
     func pageTitleIsDisplayedCorrectly(title: String) -> Bool {

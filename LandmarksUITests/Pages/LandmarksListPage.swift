@@ -22,7 +22,7 @@ class LandmarksListPage: BasePage {
     }
     
     func tapMalmoStudioCell() -> LandmarkDetailsPage {
-        app.tables.buttons["Malmo"].tap()
+        app.tables.buttons["Malmö"].tap()
         return LandmarkDetailsPage(xcuiApplication: app)
     }
 
@@ -32,7 +32,12 @@ class LandmarksListPage: BasePage {
     }
     
     func toggleFavouritesOnly() {
-        app
+        app.tables.toggles["favouritesToggle"].tap()
+    }
+    
+    func countOfAllStudios() -> Int {
+        return app.tables.buttons.count
+
     }
 
 }
