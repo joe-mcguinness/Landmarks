@@ -19,9 +19,9 @@ struct LandmarksList: View {
     
     var body: some View {
         NavigationView {
-            
+            VStack {
+                
             List {
-                //Image("ustwo").resizable().frame(width: 300, height: 50)
                 Toggle(isOn: $showFavoritesOnly) {
                     Text("Favourites only")
                 }
@@ -35,8 +35,8 @@ struct LandmarksList: View {
                     }
                 }
             }
-            .navigationTitle("ustwo studios").accessibilityIdentifier("listTitle")
-        }
+            .navigationTitle("ustwo studios")//.accessibilityIdentifier("listTitle")
+            }}
     }
 }
 

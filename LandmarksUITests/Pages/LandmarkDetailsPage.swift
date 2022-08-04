@@ -19,8 +19,10 @@ class LandmarkDetailsPage: BasePage {
     }
     
     @discardableResult
-    func toggleFavoriteButton() -> LandmarkDetailsPage {
-        app.scrollViews.otherElements.buttons["Toggle Favorite"].tap()
+    func switchFavoriteButton() -> LandmarkDetailsPage {
+        let favouriteStar = app.scrollViews.otherElements.buttons["favouritesStarButton"]
+        favouriteStar.waitForExistence(timeout: 5)
+        favouriteStar.tap()
         return self
     }
     
@@ -47,7 +49,7 @@ class LandmarkDetailsPage: BasePage {
     }
     
     func mapViewIsDisplayed() -> Bool {
-        return app.scrollViews.otherElements.staticTexts["Kärleksgatan 2, 211 45 Malmö, Sweden"].isHittable
+        return app.maps["mapView"].isHittable
     }
     
     func heroImageIsDisplayed() -> Bool {

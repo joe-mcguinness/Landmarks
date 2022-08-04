@@ -16,7 +16,7 @@ struct MapView: View {
     
     
     var body: some View {
-        Map(coordinateRegion: $region).onAppear{ setRegion(coordinate)}
+        Map(coordinateRegion: $region).onAppear{ setRegion(coordinate)}.accessibilityIdentifier("mapView")
     }
     
     private func setRegion(_ coordinate: CLLocationCoordinate2D) {

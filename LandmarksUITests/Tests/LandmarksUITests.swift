@@ -21,19 +21,18 @@ class LandmarksUITests: BaseTestClass {
     func testTogglingFavoritesChangesStudioCount() {
         let studioCount = landmarksListPage.countOfAllStudios()
         landmarkDetailsPage = landmarksListPage.tapLondonStudioCell()
-        landmarksListPage = landmarkDetailsPage.toggleFavoriteButton()
+        landmarksListPage = landmarkDetailsPage.switchFavoriteButton()
                            .tapBackButton()
-        landmarkDetailsPage.toggleFavoriteButton()
+        landmarksListPage.toggleFavouritesOnly()
         XCTAssertLessThan(landmarksListPage.countOfAllStudios(), studioCount)
     }
     
-    func testMalmoDetailsPage() {
+    func testMalmoDetailsPageShowsAllDetails() {
         landmarkDetailsPage = landmarksListPage.tapMalmoStudioCell()
         XCTAssert(landmarkDetailsPage.heroImageIsDisplayed())
         XCTAssert(landmarkDetailsPage.bodyTextIsDisplayed())
         XCTAssert(landmarkDetailsPage.headerTextIsDisplayed())
         XCTAssert(landmarkDetailsPage.titleIsDisplayedCorrectly(title: "Malmö"))
-        XCTAssert(landmarkDetailsPage.addressIsDisplayedCorrectly())        
-        landmarkDetailsPage.tapBackButton()
+        XCTAssert(landmarkDetailsPage.addressIsDisplayedCorrectly())
     }
 }

@@ -18,8 +18,11 @@ struct FavoriteButton: View {
                 .labelStyle(.iconOnly)
                 .foregroundColor(isSet ? .yellow : .gray)
         }
+        .accessibilityIdentifier("favouritesStarButton")
     }
 }
+
+    
 
 struct FavoriteButton_Previews: PreviewProvider {
     static var previews: some View {

@@ -32,7 +32,7 @@ class LandmarksListPage: BasePage {
     }
     
     func toggleFavouritesOnly() {
-        app.tables.toggles["favouritesToggle"].tap()
+        app.switches["favouritesToggle"].tap()
     }
     
     func countOfAllStudios() -> Int {
