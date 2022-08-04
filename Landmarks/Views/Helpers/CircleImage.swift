@@ -14,7 +14,7 @@ struct CircleImage: View {
             .clipShape(Circle())
             .overlay {
                 Circle().stroke(.white,lineWidth: 4)
-            }.shadow(radius: 7)
+            }.shadow(radius: 7).accessibilityIdentifier("hero image")
     }
 }
 
