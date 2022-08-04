@@ -37,7 +37,5 @@ class LandmarksListPage: BasePage {
     
     func countOfAllStudios() -> Int {
         return app.tables.buttons.count
-
     }
-
 }

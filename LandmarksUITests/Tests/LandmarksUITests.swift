@@ -12,7 +12,6 @@ class LandmarksUITests: BaseTestClass {
     var landmarksListPage: LandmarksListPage!
     var landmarkDetailsPage: LandmarkDetailsPage!
     
-    
     override func setUp() {
            super.setUp()
            landmarksListPage = LandmarksListPage(xcuiApplication: app)
@@ -20,10 +19,11 @@ class LandmarksUITests: BaseTestClass {
 
     func testTogglingFavoritesChangesStudioCount() {
         let studioCount = landmarksListPage.countOfAllStudios()
-        landmarkDetailsPage = landmarksListPage.tapLondonStudioCell()
-        landmarksListPage = landmarkDetailsPage.switchFavoriteButton()
-                           .tapBackButton()
-        landmarksListPage.toggleFavouritesOnly()
+        landmarksListPage
+            .tapLondonStudioCell()
+            .switchFavoriteButton()
+            .tapBackButton()
+            .toggleFavouritesOnly()
         XCTAssertLessThan(landmarksListPage.countOfAllStudios(), studioCount)
     }
     
